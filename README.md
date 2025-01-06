@@ -15,18 +15,7 @@ pip install nibol
 ```python
 from nibol import NibolClient
 
-nibol = NibolClient(base_url="https://api.nibol.com/public", api_key="your_api_key")
-bookings = nibol.bookings.get_bookings(query)
+nibol = NibolClient(base_url="https://api.nibol.com/public", api_key="your_api_key", api_email="you_email_api")
+users = nibol.users.list_users(emails=["jon@example.com"])
 print(bookings)
-```
-
-### Async Client
-
-```python
-from nibol import NibolAsyncClient
-
-async def main():
-    nibol = NibolAsyncClient(base_url="https://api.nibol.com/public", api_key="your_api_key")
-    bookings = await nibol.bookings.get_bookings(query)
-    print(bookings)
 ```

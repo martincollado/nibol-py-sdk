@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, Field, constr, RootModel
 from typing import List, Optional, Annotated
 from datetime import datetime
 from nibol.models.common import ReservationTimeSlot, Position, ActionHistory
@@ -9,16 +9,16 @@ class BookingQuery(BaseModel):
     limit: Optional[int] = Field(default=20, ge=1, le=100, description="Elements per page")
     start: Optional[datetime]
     end: Optional[datetime]
-    mode: Optional[Annotated[str, constr(regex="^(office|remote|not_working)$")]]
-    building: Optional[Annotated[str, constr(regex="^[a-f\\d]{24}$")]]
-    space: Optional[Annotated[str, constr(regex="^[a-f\\d]{24}$")]]
+    mode: Optional[Annotated[str, constr(pattern="^(office|remote|not_working)$")]]
+    building: Optional[Annotated[str, constr(pattern="^[a-f\\d]{24}$")]]
+    space: Optional[Annotated[str, constr(pattern="^[a-f\\d]{24}$")]]
     category: Optional[str]
     type: Optional[str]
     visitor: Optional[bool]
 
 
 class BookingData(BaseModel):
-    id: str = Field(..., regex="^[a-f\\d]{24}$")
+    id: str = Field(..., pattern="^[a-f\\d]{24}$")
     start: datetime
     end: datetime
     mode: str
@@ -55,7 +55,7 @@ class BookingCalendarResponse(BaseModel):
 class BookingCreateRequest(BaseModel):
     mode: str
     days: List[ReservationTimeSlot]
-    map_entity_id: Annotated[str, constr(regex="^[a-f\\d]{24}$")]
+    map_entity_id: Annotated[str, constr(pattern="^[a-f\\d]{24}$")]
     conference_link: Optional[Annotated[str, constr(max_length=200)]]
     attendees: Optional[List[str]]
     description: Optional[Annotated[str, constr(max_length=250)]]
@@ -69,5 +69,5 @@ class BookingResponseItem(BaseModel):
     error: Optional[str]
 
 
-class BookingResponse(BaseModel):
-    __root__: List[BookingResponseItem]
+class BookingResponse(RootModel):
+    root: List[BookingResponseItem]

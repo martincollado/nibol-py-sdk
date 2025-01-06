@@ -1,3 +1,3 @@
-from nibol.client import NibolClient, NibolAsyncClient
+from nibol.client import NibolClient
 
-__all__ = ["NibolClient", "NibolAsyncClient"]
+__all__ = ["NibolClient"]

@@ -3,13 +3,13 @@ from typing import List, Optional, Annotated
 
 
 class UserListRequest(BaseModel):
-    ids: Optional[List[Annotated[str, constr(regex="^[a-f\\d]{24}$")]]]
-    emails: Optional[List[str]]
+    ids: Optional[List[Annotated[str, constr(pattern="^[a-f\\d]{24}$")]]] = None
+    emails: Optional[List[str]] = None
 
 
 class UserResponse(BaseModel):
     id: str
-    name: str
+    firstName: str
+    lastName: str
     email: str
-    picture: Optional[str]
-    status: Optional[str]
+    active: Optional[bool]

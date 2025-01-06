@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, RootModel
 from typing import List, Optional
 
 
@@ -13,8 +13,8 @@ class Space(BaseModel):
     map_entities_total: int
 
 
-class SpaceListResponse(BaseModel):
-    __root__: List[Space]
+class SpaceListResponse(RootModel):
+    root: List[Space]
 
 
 class SpaceDetails(BaseModel):

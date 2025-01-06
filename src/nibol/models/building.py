@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, RootModel
 from typing import List
 from nibol.models.common import Position
 
@@ -24,5 +24,5 @@ class Building(BaseModel):
     settings: BuildingSettings
 
 
-class BuildingListResponse(BaseModel):
-    __root__: List[Building]
+class BuildingListResponse(RootModel):
+    root: List[Building]
