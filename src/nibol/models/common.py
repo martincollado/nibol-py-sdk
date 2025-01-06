@@ -8,12 +8,17 @@ class Coordinates(BaseModel):
     lng: float
 
 
+class TimeSlot(BaseModel):
+    start: str
+    end: str
+
+
 class Position(BaseModel):
-    address: Optional[str]
-    country: Optional[str]
-    additional: Optional[str]
-    coordinates: Optional[Coordinates]
-    timezone: Optional[str]
+    address: str
+    coordinates: dict
+    timezone: str
+    country: Optional[str] = None
+    additional: Optional[str] = None
 
 
 class ReservationTimeSlot(BaseModel):

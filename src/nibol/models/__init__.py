@@ -13,9 +13,9 @@ from nibol.models.booking import (
     BookingResponseItem,
     BookingResponse,
 )
-from nibol.models.building import Building, BuildingListResponse
+from nibol.models.building import Building
 from nibol.models.space import Space, SpaceListResponse, SpaceDetails
-from nibol.models.user import UserListRequest, UserResponse
+from nibol.models.user import UserListRequest, User
 
 __all__ = [
     "Coordinates",
@@ -30,10 +30,9 @@ __all__ = [
     "BookingResponseItem",
     "BookingResponse",
     "Building",
-    "BuildingListResponse",
     "Space",
     "SpaceListResponse",
     "SpaceDetails",
     "UserListRequest",
-    "UserResponse",
+    "User",
 ]

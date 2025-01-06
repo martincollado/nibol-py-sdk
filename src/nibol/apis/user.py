@@ -1,5 +1,6 @@
 from typing import List, Any
-from nibol.models.user import UserListRequest, UserResponse
+from pydantic import ValidationError
+from nibol.models.user import UserListRequest, User
 
 
 class UserApi:
@@ -7,28 +8,15 @@ class UserApi:
         self.client = client
 
     def list_users(self, emails: list[str] = None, ids: list[str] = None) -> List[dict]:
-        """Retrieve users by IDs or emails.
+        try:
+            request_data = UserListRequest(emails=emails, ids=ids)
 
-        Args:
-            emails: Optional list of email addresses
-            ids: Optional list of user IDs
+            response = self.client.request(
+                method="POST",
+                endpoint="/v1/user/list",
+                json=request_data.model_dump(exclude_none=True),
+            )
 
-        Returns:
-            List of user dictionaries
-
-        Raises:
-            ValueError: If neither emails nor ids are provided
-        """
-        if not emails and not ids:
-            raise ValueError("At least one of emails or ids must be provided")
-
-        request_data = UserListRequest(emails=emails, ids=ids)
-
-        response = self.client.request(
-            method="POST",
-            endpoint="/v1/user/list",
-            json=request_data.model_dump(exclude_none=True),
-        )
-
-        validated_users = [UserResponse(**user) for user in response]
-        return [user.model_dump() for user in validated_users]
+            return [User(**user) for user in response]
+        except ValidationError as e:
+            print(e)
