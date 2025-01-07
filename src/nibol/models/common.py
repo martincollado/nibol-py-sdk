@@ -8,6 +8,10 @@ class Coordinates(BaseModel):
     lng: float
 
 
+class Categorie(BaseModel):
+    name: str
+
+
 class TimeSlot(BaseModel):
     start: str
     end: str
