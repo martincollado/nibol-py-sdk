@@ -1,6 +1,11 @@
-# Nibol Python SDK
+# [Non Oficial] Nibol Python SDK
 
-Python SDK for the Nibol API.
+**Non-official** Python SDK for the Nibol API. For more information go to Nibol support.
+
+
+> [!WARNING]  
+> It's experimental development for integrations purpose. Probably I'll finish error handling, docs, add comments and publish it on PyPi.
+
 
 ## Installation
 
@@ -9,8 +14,6 @@ pip install nibol
 ```
 
 ## Usage
-
-### Sync Client
 
 ```python
 from nibol import NibolClient
