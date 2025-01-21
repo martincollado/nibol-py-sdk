@@ -8,7 +8,7 @@ from nibol.models.booking import (
 )
 
 
-class BookingApi:
+class BookingAPI:
     """
     Manages booking operations (list, create, delete) both synchronously and asynchronously.
     """
