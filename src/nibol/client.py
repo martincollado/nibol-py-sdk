@@ -1,7 +1,7 @@
 from typing import Optional, Union
 from nibol.clients.sync_client import SyncApiClient
 from nibol.clients.async_client import AsyncApiClient
-from nibol.apis.booking import BookingApi
+from nibol.apis.booking import BookingAPI
 from nibol.apis.building import BuildingAPI
 from nibol.apis.space import SpaceAPI
 from nibol.apis.user import UserAPI
@@ -29,7 +29,7 @@ class NibolClient:
             logger_type=logger_type, level=log_level, service_name=service_name, project_id=project_id
         )
 
-        self.bookings = BookingApi(self._client)
+        self.bookings = BookingAPI(self._client)
         self.buildings = BuildingAPI(self._client)
         self.spaces = SpaceAPI(self._client)
         self.users = UserAPI(self._client)
@@ -54,7 +54,7 @@ class NibolAsyncClient:
             logger_type=logger_type, level=log_level, service_name=service_name, project_id=project_id
         )
 
-        self.bookings = BookingApi(self._client)
+        self.bookings = BookingAPI(self._client)
         self.buildings = BuildingAPI(self._client)
         self.spaces = SpaceAPI(self._client)
         self.users = UserAPI(self._client)
