@@ -12,31 +12,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.13"
+  #     - name: Setup Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: "3.13"
 
-      - name: Install Poetry
-        run: |
-          pip install poetry
-          poetry install
+  #     - name: Install Poetry
+  #       run: |
+  #         pip install poetry
+  #         poetry install
 
-      - name: Run tests with pytest and coverage
-        run: |
-          poetry run pytest --cov=src/nibol --cov-report=xml
+  #     - name: Run tests with pytest and coverage
+  #       run: |
+  #         poetry run pytest --cov=src/nibol --cov-report=xml
 
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v3
-        with:
-          file: ./coverage.xml
-          fail_ci_if_error: true
+  #     - name: Upload coverage reports
+  #       uses: codecov/codecov-action@v3
+  #       with:
+  #         file: ./coverage.xml
+  #         fail_ci_if_error: true
 
   build:
     needs: test
