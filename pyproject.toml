@@ -1,22 +1,36 @@
-[tool.poetry]
+[project]
 name = "nibol"
-version = "0.1.0"
 description = "Python SDK for the Nibol API."
-authors = ["Martin Collado <info@martincollado.dev>"]
+authors = [
+    { name = "Martin Collado", email = "info@martincollado.dev" },
+]
 license = "MIT"
 readme = "README.md"
+dynamic = [ "version" ]
+
+[tool.poetry]
+version = "0.1.0"
 
 [tool.poetry.dependencies]
 python = ">=3.12"
 httpx = "^0.28.1"
-pydantic = "^2.10.4"
+pydantic = "^2.10.5"
 requests = "^2.32.3"
+structlog = "^25.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 pytest-mock = "^3.14.0"
 pytest-cov = "^6.0.0"
 
+[tool.poetry.requires-plugins]
+poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
+
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
