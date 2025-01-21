@@ -9,7 +9,8 @@ readme = "README.md"
 dynamic = ["version"]
 
 [tool.poetry]
-version = "0.1.0"
+requires-poetry = ">=2.0"
+version = "0.0.0"
 
 [tool.poetry.dependencies]
 python = ">=3.12"
@@ -30,6 +31,12 @@ poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
 enable = true
 vcs = "git"
 style = "semver"
+metadata = false
+format = "{base}"
+
+[tool.poetry-dynamic-versioning.substitution]
+files = ["nibol/version.py"]
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
